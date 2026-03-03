@@ -4,12 +4,80 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bullying Report</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <h1>Bullying Report Form</h1>
 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 320px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #444;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #6c63ff;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #6c63ff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #574fd6;
+    }
+
+    .success-message {
+      color: green;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
   <form id="reportForm">
+    <h1>Bullying Report Form</h1>
+
     <label for="name">Name:</label><br>
     <input type="text" id="name" name="name" required><br><br>
 
@@ -17,8 +85,22 @@
     <textarea id="incident" name="incident" rows="4" required></textarea><br><br>
 
     <button type="submit">Submit Report</button>
+    <div class="success-message" id="successMessage"></div>
   </form>
 
-  <script src="js/script.js"></script>
+  <script>
+    document.getElementById("reportForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const incident = document.getElementById("incident").value;
+
+      if (name && incident) {
+        document.getElementById("successMessage").textContent =
+          "Thank you! Your report has been submitted.";
+        this.reset();
+      }
+    });
+  </script>
 </body>
 </html>
