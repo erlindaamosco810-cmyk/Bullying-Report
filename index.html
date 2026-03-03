@@ -1,28 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Bullying Report</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    form {
-      background: white;
-      padding: 20px;
-      width: 300px;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      width: 350px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #667eea;
     }
 
     button {
-      background: blue;
+      width: 100%;
+      padding: 10px;
+      background: #667eea;
       color: white;
-      padding: 8px;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #5a67d8;
+    }
+
+    #message {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
     }
   </style>
 </head>
+
+<body>
+
+  <div class="container">
+    <h1>Bullying Report Form</h1>
+
+    <form id="reportForm">
+      <label>Name</label>
+      <input type="text" id="name" required>
+
+      <label>Incident Description</label>
+      <textarea id="incident" rows="4" required></textarea>
+
+      <button type="submit">Submit Report</button>
+      <p id="message"></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("reportForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const incident = document.getElementById("incident").value;
+      const message = document.getElementById("message");
+
+      if (name && incident) {
+        message.style.color = "green";
+        message.textContent = "Report submitted successfully!";
+        this.reset();
+      } else {
+        message.style.color = "red";
+        message.textContent = "Please fill in all fields.";
+      }
+    });
+  </script>
+
+</body>
+</html>
